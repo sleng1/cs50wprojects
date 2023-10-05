@@ -1,0 +1,51 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<style>
+    #name, #description, #post, #bid, #submit, #picture, label, #category {
+        margin-bottom: 20px;
+        margin-left: 10px;
+    }
+    #description {
+        width: 65%;
+        height: 300px;
+    }
+    #error {
+        color: red;
+        display: inline;
+        float: right;
+        margin-right: 20px;
+    }
+    #post {
+        display: inline;
+    }
+    #name {
+        margin-top: 20px;
+    }
+    input, textarea, select {
+        display: grid
+    }
+</style>
+<h1 id="post">Post a Listing</h1>
+<h1 id="error">{{ error }}</h1>
+<form action="{% url 'create_listing' %}" method="post">
+    {% csrf_token %}
+    <input type="text" id="name" name="name" maxlength=64 placeholder="Name Of Item">
+    <textarea id= "description" name="description" maxlength=1000 placeholder="Describe your item here."></textarea>
+    <label for="picture">Optionally attach a URL to an picture:</label>
+    <input type="url" id="picture" name="picture" accept="image/*">
+    <label for="category">Optionally assign a category:</label>
+    <select id="category" name="category">
+        <option value=""></option>
+        <option value="clothing">Clothing</option>
+        <option value="household">Household</option>
+        <option value="outdoors">Outdoors</option>
+        <option value="furniture">Furniture</option>
+        <option value="books">Books</option>
+        <option value="electronics">Electronics</option>
+        <option value="miscellaneous">Miscellaneous</option>
+    </select>
+    <input id="bid" type="text" name="starting_bid" placeholder="Starting Bid">
+    <input id="submit" type="submit" value="Post Item">
+</form>
+{% endblock %}

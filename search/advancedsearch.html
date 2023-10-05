@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>Advanced Search</title>
+        <link rel="stylesheet" href="searchstyles.css">
+    </head>
+    <body>
+        <div class="header">
+            <a href="index.html">Main Search</a>
+        </div>
+        <div id="googleadv">
+            <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="Google">
+        </div>
+        <div id="advsearch">
+            Advanced Search
+        </div>
+        <form action="https://www.google.com/search">
+            <div class="grid">
+                <div id="hl">Find pages with...</div>
+                <div></div>
+                <div id="hr">To do this in the search box</div>
+                <div class="left">all these words:</div>
+                <input class="middle" type="text" name="as_q">
+                <div class="right">Type the important words</div>
+                <div class="left">this exact word or phrase:</div>
+                <input class="middle" type="text" name="as_epq">
+                <div class="right">Put exact words in quotes</div>
+                <div class="left">any of these words:</div>         
+                <input class="middle" type="text" name="as_oq">
+                <div class="right">Type OR between all the words you want</div>
+                <div class="left">none of these words:</div>
+                <input class="middle" type="text" name="as_eq">
+                <div class="right">Put a minus sign before words you don't want</div>
+                <div class="left">numbers ranging from:</div>
+                <div id="num">
+                    <input type="text" name="as_nlo">
+                    <span id="to">to</span>
+                    <input type="text" name="as_nhi">
+                </div>
+                <div class="right">Put two periods between the numbers and add a unit of measure</div>
+            </div>
+            <input id="advsubmit" type="submit" value="Advanced Search">
+        </form>
+    </body>
+</html>

@@ -1,0 +1,75 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<style>
+    .grid {
+        display: grid;
+        grid-template-columns: 500px auto;
+        grid-column-gap: 20px;
+    }
+    .closed {
+        color: red;
+    }
+    #no {
+        border-bottom: 1px solid gray;
+        padding-bottom: 20px;
+    }
+    #reopen {
+        height: 50px;
+        font-size: 30px;
+        width: 250px;
+    }
+    form {
+        text-align: right;
+        margin-right: 50px;
+    }
+    span {
+        font-style: italic;
+    }
+</style>
+<div class="grid">
+    <div>
+        <h1 class="closed">
+            Listing Closed{% if request.user == winning_bid.user %}. 
+            You Won! {% endif %}
+        </h1>
+    </div>
+    <div>
+        {% if request.user == listing.listing_user %}
+        <form action="{% url 'open_bid' listing.id %}">
+            {% csrf_token %}
+            <input id="reopen" type="submit" value="Reopen Listing">
+        </form>
+        {% endif %}
+    </div>
+</div>
+<h2 class="closed" id="no">
+    {% if request.user == winning_bid.user %}
+    Contact <span>{{ listing.listing_user.username }}</span> at 
+    {{ listing.listing_user.email }} to arrange a time and place for pickup.
+    {% else %}
+    No more bids can be placed on this listing.
+    {% endif %}
+</h2>
+<div class="grid">
+    <div>
+        <h1>{{ listing.name}}</h1>
+        {% if winning_bid is listing.starting_bid %}
+        <h3>Didn't sell</h3>
+        {% else %}
+        <h3>Sold for ${{ winning_bid.price }}</h3>
+        {% endif %}
+        {% if listing.category %}
+        <h5>Category: {{ listing.category }}</h5>
+        {% endif%}
+        <p>{{ listing.description }}</p>
+        {% if listing.image %}
+    </div>
+    <div>
+        {% if listing.image %}
+        <img src="{{ listing.image }}" alt="Image cannot be displayed.">
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

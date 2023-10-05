@@ -1,0 +1,35 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+New Page
+{% endblock %}
+
+{% block body %}
+<style>
+    #title {
+        margin-left: 10px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    textarea {
+        margin-left: 10px;
+        height: 500px;
+        width: 95%;
+    }
+    #submit {
+        margin-top: 20px;
+        margin-left: 10px;
+    }
+</style>
+<form method="post">
+    {% csrf_token %}
+    <div>
+        <input id="title" type="text" placeholder="Title" name="title">
+    </div>
+    <div id="grid">
+        <label for="body"></label>
+        <textarea id="body" name="body" placeholder="Enter the contents of your new page in Markdown here."></textarea>
+    </div>
+    <input id="submit" type="submit">
+</form>
+{% endblock %}

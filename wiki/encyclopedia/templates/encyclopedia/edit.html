@@ -1,0 +1,31 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+Edit Page
+{% endblock %}
+
+{% block body %}
+<style>
+    label {
+        font-weight: bold;
+        margin-left: 10px;
+    }
+    textarea {
+        margin-left: 10px;
+        width: 95%;
+        height: 500px;
+    }
+    #submit {
+        margin-top: 20px;
+        margin-left: 10px;
+    }
+</style>
+<form method="post">
+    {% csrf_token %}
+    <div>
+        <label for="edit">Edit page here:</label>
+    </div>
+    <textarea id="body" name="body">{{ entry }}</textarea>
+    <input id="submit" type="submit" value="Submit Changes">
+</form>
+{% endblock %}
